@@ -8,6 +8,23 @@
 {% endblock %}
 {% block content %}
 
+<script>
+    $(function() {
+        // make sure answers are only posted once
+        $('#answer-form').one('submit', function() {
+            $(this).find('button[type="submit"]').attr('disabled','disabled');
+        });
+
+        // make sure comments/replies are only posted once
+        $(document).on('click', '.add-comment', function(){
+            $('#comment-form').one('click', function() {
+                $(this).find('.btn-success').attr('disabled','disabled');
+            });
+        })
+    });
+</script>
+
+
     {% search_bar %}
 
     <div class="row" itemscope itemtype="http://schema.org/QAPage">

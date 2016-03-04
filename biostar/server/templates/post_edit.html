@@ -9,6 +9,14 @@
 
 {% block content %}
 
+    <script>
+        // make sure questions are only posted once
+        $(function() {
+            $('form').first().one('submit', function() {
+                $(this).find('input[type="submit"]').attr('disabled','disabled');
+            });
+        });
+    </script>
     <div class="row">
 
         <div class="col-md-8 col-md-offset-2">

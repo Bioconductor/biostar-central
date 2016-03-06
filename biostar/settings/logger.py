@@ -41,7 +41,7 @@ LOGGING = {
 
     'handlers': {
         'mail_admins': {
-            'level': 'ERROR',
+            'level': 'DEBUG',
             'filters': ['require_debug_false', 'ratelimit'],
             'class': 'django.utils.log.AdminEmailHandler'
         },
@@ -62,22 +62,22 @@ LOGGING = {
 
         'django.request': {
             'handlers': ['mail_admins'],
-            'level': 'ERROR',
+            'level': 'DEBUG',
             'propagate': True,
         },
 
         'biostar':{
-            'level': 'INFO',
+            'level': 'DEBUG',
             'handlers': ['console'],
         },
 
         'command':{
-            'level': 'INFO',
+            'level': 'DEBUG',
             'handlers': ['console'],
         },
 
        'simple-logger':{
-            'level': 'INFO',
+            'level': 'DEBUG',
             'handlers': ['simple'],
         },
     }

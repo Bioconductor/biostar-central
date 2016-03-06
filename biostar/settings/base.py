@@ -9,7 +9,7 @@ import socket
 
 # Turn off debug mode on deployed servers.
 
-PRODUCTION = socket.gethostname() in ["habu", "support"] 
+PRODUCTION = socket.gethostname() in ["habu", "support"]
 
 if (PRODUCTION):
     DEBUG = False
@@ -364,7 +364,7 @@ MAX_POSTS_NEW_USER = 5
 MAX_POSTS_TRUSTED_USER = 30
 
 # How many top level posts per day for a new user.
-MAX_TOP_POSTS_NEW_USER = 30000000 # artificially inflated, change back to 2!
+MAX_TOP_POSTS_NEW_USER = 2
 MAX_TOP_POSTS_TRUSTED_USER = 5
 
 SOCIALACCOUNT_ADAPTER = 'biostar.server.middleware.AutoSignupAdapter'
@@ -527,4 +527,3 @@ EMAIL_USE_TLS=False
 if ("EMAIL_USE_TLS" in os.environ.keys() and \
   get_env("EMAIL_USE_TLS").lower() == "true"):
     EMAIL_USE_TLS=True
-

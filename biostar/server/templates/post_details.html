@@ -15,12 +15,15 @@
             $(this).find('button[type="submit"]').attr('disabled','disabled');
         });
 
-        // make sure comments/replies are only posted once
-        $(document).on('click', '.add-comment', function(){
-            $('#comment-form').one('click', function() {
-                $(this).find('.btn-success').attr('disabled','disabled');
-            });
-        })
+        var first = true;
+
+        checkBeforeSubmit = function() {
+            if (first) {
+                document.forms["comment-form"].submit();
+                first = false;
+            }
+        }
+
     });
 </script>
 

@@ -72,7 +72,7 @@ function add_comment(elem) {
     <form id="comment-form" role="form" action="/p/new/comment/' + post_id + '/" method="post">' + csrf_html + '\
         <div class="form-group">\
         <textarea class="input-xlarge span8" id="comment-box" name="content" rows="3"></textarea></div> \
-        <div><a class="btn btn-success" href=\'javascript:document.forms["comment-form"].submit()\'><i class="icon-comment"></i> Add comment</a>          \
+        <div><a class="btn btn-success" href=\'javascript:checkBeforeSubmit();\'><i class="icon-comment"></i> Add comment</a>          \
         </div>       \
     </form>            \
     </div>'

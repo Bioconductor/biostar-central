@@ -103,7 +103,7 @@ ADMINS = (
 # Get the secret key from the environment.
 SECRET_KEY = get_env("SECRET_KEY")
 
-MANAGERS = ADMINS
+MANAGERS = () #ADMINS
 
 
 

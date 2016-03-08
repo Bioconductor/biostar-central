@@ -103,6 +103,8 @@ ADMINS = (
 # Get the secret key from the environment.
 SECRET_KEY = get_env("SECRET_KEY")
 
+SEND_BROKEN_LINK_EMAILS = False
+
 MANAGERS = () #ADMINS
 
 

@@ -309,6 +309,7 @@ INSTALLED_APPS = [
     'djcelery',
     'kombu.transport.django',
     'south',
+    "captcha",
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
@@ -506,6 +507,21 @@ if ("ON_PRODUCTION" in os.environ and os.environ['ON_PRODUCTION'] == 'True'):
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 else:
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"
+
+
+# Google ReCaptcha No-Captcha settings
+# When set the captcha forms will be active.
+if "RECAPTCHA_PUBLIC_KEY" in os.environ:
+    RECAPTCHA_PUBLIC_KEY = os.environ['RECAPTCHA_PUBLIC_KEY']
+else:
+    RECAPTCHA_PUBLIC_KEY = ""
+if "RECAPTCHA_PRIVATE_KEY" in os.environ:
+    RECAPTCHA_PRIVATE_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
+else:
+    RECAPTCHA_PRIVATE_KEY = ""
+RECAPTCHA_USE_SSL = True  # Defaults to False
+NOCAPTCHA = True
+
 
 #ACCOUNT_LOGOUT_ON_GET = True
 

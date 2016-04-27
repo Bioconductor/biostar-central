@@ -27,6 +27,9 @@ START_CATEGORIES = [
     "Latest", "News", "Jobs", "Tutorials"
 ]
 
+# Add language detection
+LANGUAGE_DETECTION = ['en']
+
 # These should be the most frequent (or special) tags on the site.
 NAVBAR_TAGS = []
 

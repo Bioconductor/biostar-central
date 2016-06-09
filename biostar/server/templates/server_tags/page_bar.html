@@ -5,7 +5,7 @@
 
   <span class="step-links">
     {% if page_obj.has_previous %}
-    <a href="?page={{ page_obj.previous_page_number }}&sort={{ sort }}&limit={{ limit }}&q={{ q }}">&lt;prev</a>
+    <a href="?page={{ page_obj.previous_page_number }}&sort={{ sort }}&limit={{ limit }}&answered={{ answered }}&q={{ q }}">&lt;prev</a>
     {% else %}
     &lt;prev
     {% endif %}
@@ -16,7 +16,7 @@
     </span>
 
     {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}&sort={{ sort }}&limit={{ limit }}&q={{ q }}">next &gt;</a>
+    <a href="?page={{ page_obj.next_page_number }}&sort={{ sort }}&limit={{ limit }}&answered={{ answered }}&q={{ q }}">next &gt;</a>
     {% else %}
     next &gt;
     {% endif %}

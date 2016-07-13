@@ -85,7 +85,7 @@ def parse_html(text):
         # Try the gist embedding patterns
         targets = [
             (GIST_RE, lambda x: '<script src="https://gist.github.com/%s.js"></script>' % x),
-            (YOUTUBE_RE, lambda x: '<iframe width="420" height="315" src="https://www.youtube.com/embed/%s" frameborder="0" allowfullscreen></iframe>' % x),
+            (YOUTUBE_RE, lambda x: '<iframe width="420" height="315" src="//www.youtube.com/embed/%s" frameborder="0" allowfullscreen></iframe>' % x),
             (TWITTER_RE, get_embedded_tweet),
         ]
 

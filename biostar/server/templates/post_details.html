@@ -30,20 +30,20 @@
 
     {% search_bar %}
 
-    <div class="row" itemscope itemtype="http://schema.org/QAPage">
+    <div class="row" itemscope itemtype="https://schema.org/QAPage">
 
         <div class="col-xs-12 col-md-9">
 
             <div id="post-details" >
                 {# This is the toplevel post #}
-                <span itemscope itemtype="http://schema.org/Question">
+                <span itemscope itemtype="https://schema.org/Question">
                     {% post_body post user post.tree %}
                 </span>
 
 
                 {# Render each answer for the post #}
                 {% for answer in post.answers %}
-                    <span itemscope itemtype="http://schema.org/Answer">
+                    <span itemscope itemtype="https://schema.org/Answer">
                         {% post_body answer user post.tree %}
                     </span>
                 {% endfor %}

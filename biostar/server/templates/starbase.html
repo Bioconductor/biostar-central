@@ -61,6 +61,22 @@
         TITLE_SEARCH_URL = "{% url 'search-title' %}"
         POST_DISPLAY_URL = "/p/"
     </script>
+
+    <style>
+        .select2-container {
+          max-width: 100%;
+        }
+        .select2-choices {
+          border-radius: 4px;
+        }
+        .select2-drop {
+          margin-top: -4px;
+        }
+        .hljs {
+          background: inherit;
+        }
+    </style>
+
 </head>
 <body>
 {# Main page container. #}
@@ -152,6 +168,17 @@
     <div id="traffic">Traffic: {{ TRAFFIC }} users visited in the last hour</div>
 
 </div>
+
+<script>
+  hljs.configure({
+    tabReplace: '  ',
+    languages: ['r']
+  })
+  hljs.initHighlighting();
+  $().submit(function() {
+    //unclick markdown button
+  })
+</script>
 
 {# Google tracker injected if it exists in the context. Set in the django settings. #}
 {% if GOOGLE_TRACKER %}

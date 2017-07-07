@@ -5,7 +5,7 @@ from .models import Post
 from django import forms
 from django.core.urlresolvers import reverse
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Fieldset, Div, Submit, ButtonHolder
+from crispy_forms.layout import Layout, Field, HTML, Div, Submit, ButtonHolder
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -111,8 +111,10 @@ class LongForm(forms.Form):
         self.helper = FormHelper()
         self.helper.form_class = "post-form"
         self.helper.layout = Layout(
-            Fieldset(
-                'Post Form',
+            Div(
+                HTML("""
+                    <legend>Post Form</legend>
+                """),
                 Field('title'),
                 Field('post_type'),
                 Field('tag_val'),
@@ -133,7 +135,7 @@ class ShortForm(forms.Form):
         super(ShortForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Fieldset(
+            Div(
                 'Post',
                 'content',
             ),

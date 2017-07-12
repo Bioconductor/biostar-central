@@ -72,7 +72,7 @@ class UserEditForm(forms.Form):
                     Div('watched_tags'),
                     css_class="col-md-offset-1 col-md-10",
                 ),
-                Div('info', css_class="col-md-12"),
+                Div('info', css_class="col-md-offset-1 col-md-10"),
             ),
             ButtonHolder(
                 Submit('submit', 'Submit')

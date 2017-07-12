@@ -177,12 +177,10 @@
   })
   hljs.initHighlighting();
   //form submission
-  $().submit(function(event) {
-    event.preventDefault();
+  $("form").submit(function() {
     if($("a.cke_button__markdown").hasClass("cke_button_on")) {
   	   $("a.cke_button__markdown").click();
     }
-    $(this).unbind('submit').submit();
   })
 </script>
 

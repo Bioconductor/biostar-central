@@ -176,7 +176,9 @@
   })
   hljs.initHighlighting();
   $().submit(function() {
-    //unclick markdown button
+    if($("a.cke_button__markdown").hasClass(“cke_button_on”)) {
+  	   $("a.cke_button__markdown").click()
+    }
   })
 </script>
 

@@ -170,15 +170,19 @@
 </div>
 
 <script>
+  //syntax highlighting
   hljs.configure({
     tabReplace: '  ',
     languages: ['r']
   })
   hljs.initHighlighting();
+  //form submission
   $().submit(function(event) {
+    event.preventDefault();
     if($("a.cke_button__markdown").hasClass("cke_button_on")) {
-  	   $("a.cke_button__markdown").click()
+  	   $("a.cke_button__markdown").click();
     }
+    $(this).unbind('submit').submit();
   })
 </script>
 

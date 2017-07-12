@@ -74,7 +74,8 @@ class UserEditForm(forms.Form):
                 ),
                 Div('info', css_class="col-md-offset-1 col-md-10"),
                 ButtonHolder(
-                    Submit('submit', 'Submit')
+                    Submit('submit', 'Submit'),
+                    css_class="col-md-offset-1 col-md-10",
                 )
             )
         )

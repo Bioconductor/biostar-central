@@ -175,8 +175,8 @@
     languages: ['r']
   })
   hljs.initHighlighting();
-  $().submit(function() {
-    if($("a.cke_button__markdown").hasClass(“cke_button_on”)) {
+  $().submit(function(event) {
+    if($("a.cke_button__markdown").hasClass("cke_button_on")) {
   	   $("a.cke_button__markdown").click()
     }
   })

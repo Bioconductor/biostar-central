@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect, Http404
 from django import forms
 from django.shortcuts import render
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Fieldset, Div, Submit, ButtonHolder
+from crispy_forms.layout import Layout, Field, HTML, Div, Submit, ButtonHolder
 from django.contrib import messages
 import datetime
 from django.utils.timezone import utc
@@ -51,8 +51,10 @@ class EditForm(forms.Form):
         super(EditForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
-            Fieldset(
-                'News Form',
+            Div(
+                HTML("""
+                    <legend>News Form</legend>
+                """),
                 Field('title'),
                 Field('content'),
                 Field('text'),
@@ -142,4 +144,3 @@ class EditEntry(LoginRequiredMixin, StaffuserRequiredMixin, FormView):
 
         messages.success(request, "form is valid")
         return render(request, self.template_name, {'form': form})
-

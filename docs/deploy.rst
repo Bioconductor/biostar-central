@@ -31,7 +31,7 @@ Technically a django deployment needs only a settings file, but in practice we u
 file to populate a shell environment and a settings file that pulls some of these variables out of
 the environment.
 
-We recomment that you start with the files in ``live/deploy`` folder and copy them another
+We recommend that you start with the files in ``live/deploy`` folder and copy them another
 python package folder. The ``simple.env`` file shows the minimally necessary variables
 that need to be set.
 
@@ -72,7 +72,7 @@ While not required to be turned on the site supports compressing and precompilin
 To make use of this functionality you will need to have ``lessc`` to be installed and you will
 need to set the ``USE_COMPRESSOR=True`` in your settings file.
 
-To deply the site with ``postgresql`` and ``elasticsearch`` install the requirements::
+To deploy the site with ``postgresql`` and ``elasticsearch`` install the requirements::
 
     pip install --upgrade -r conf/requirements/all.txt
 
@@ -93,5 +93,3 @@ the following stack:
 
 The ``conf/server`` folder has configuration files for ``nginx``, ``gunicorn`` and ``supervisord``.
 The ``conf/fabs`` folder has Fabric files to automate a large number of site deployment operations.
-
-

@@ -6,7 +6,7 @@ from . import auth
 from django import forms
 from django.core.urlresolvers import reverse
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Fieldset, Submit, ButtonHolder, Div
+from crispy_forms.layout import Layout, Field, HTML, Submit, ButtonHolder, Div
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -56,8 +56,10 @@ class UserEditForm(forms.Form):
         self.helper.error_text_inline = False
         self.helper.help_text_inline = True
         self.helper.layout = Layout(
-            Fieldset(
-                'Update your profile',
+            Div(
+                HTML("""
+                    <legend>Update your profile</legend>
+                """),
                 Div(
                     Div('name', ),
                     Div('email', ),
@@ -70,10 +72,11 @@ class UserEditForm(forms.Form):
                     Div('watched_tags'),
                     css_class="col-md-offset-1 col-md-10",
                 ),
-                Div('info', css_class="col-md-12"),
-            ),
-            ButtonHolder(
-                Submit('submit', 'Submit')
+                Div('info', css_class="col-md-offset-1 col-md-10"),
+                ButtonHolder(
+                    Submit('submit', 'Submit'),
+                    css_class="col-md-offset-1 col-md-10",
+                )
             )
         )
 

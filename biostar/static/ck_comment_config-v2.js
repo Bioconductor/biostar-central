@@ -1,12 +1,12 @@
 /**
- * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.html or http://ckeditor.com/license
- */
-CKEDITOR.stylesSet.add( 'biostar_comment',
-[
+* @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+* For licensing, see LICENSE.html or http://ckeditor.com/license
+*/
+
+CKEDITOR.stylesSet.add( 'biostar_comment', [
 	{ name : 'Text', element : 'p' },
-    { name : 'Code' , element : 'pre' },
-    { name : 'Inline Code' , element : 'code'},
+	{ name : 'Code' , element : 'pre' },
+	{ name : 'Inline Code' , element : 'code' },
 	{ name : 'Yellow Marker', element : 'span', styles : { 'background-color' : 'Yellow' } }
 ]);
 
@@ -17,8 +17,8 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 	config.toolbarGroups = [
-        { name: 'styles' },
-        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+		{ name: 'styles' },
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
 		{ name: 'paragraph',   groups: [ 'list',  'bidi', 'links' ] },
 		{ name: 'links' },
 		{ name: 'insert' },
@@ -31,15 +31,20 @@ CKEDITOR.editorConfig = function( config ) {
 	// need to have in the Standard(s) toolbar.
 	config.removeButtons = 'Underline,Subscript,Superscript';
 
+	// Add the markdown plugin.
+	config.extraPlugins = 'markdown';
+
 	// Set the most common block elements.
-	config.format_tags = 'p;h1;h2;h3;pre';
+	config.format_tags = 'p;h1;h2;h3;h4;pre';
 
 	// Make dialogs simpler.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 
-    config.height = '10em';
+	config.height = '10em';
 
-    config.stylesSet = 'biostar_comment';
-    config.disableNativeSpellChecker = false;
-    config.removePlugins = 'liststyle,tabletools,scayt,menubutton,contextmenu';
+	config.stylesSet = 'biostar_comment';
+
+	config.disableNativeSpellChecker = false;
+
+	config.removePlugins = 'liststyle,tabletools,scayt,menubutton,contextmenu';
 };

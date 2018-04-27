@@ -80,14 +80,14 @@
                           <strong>Answers only!</strong>
 
                           <span>
-                            Use 'Add comment' or 'Add reply' to discuss an answer,
-                            ask for clarifications, request more details, etc.
+                            Use 'Add comment' or 'Add reply' to discuss an answer, ask for clarifications, or request more details.
+                            <a href="$('#answer-form').removeClass('hidden')">I want to add an answer.</a>
                           </span>
 
                         </div>
 
                         <form role="form" id="answer-form" method="post"
-                              action="{% url 'new-answer' post.id %}">
+                              action="{% url 'new-answer' post.id %}" class="hidden">
                             {% csrf_token %}
                             <div class="form-group">
                                 <textarea class="textarea form-control" cols="40" id="answerbox" name="content"

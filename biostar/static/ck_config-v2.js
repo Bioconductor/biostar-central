@@ -50,7 +50,7 @@ CKEDITOR.editorConfig = function( config ) {
 
 	config.entities = false;
 
-	config.codemirror = {
+	config.markdown = {
 		lineWrapping: true
 	}
 

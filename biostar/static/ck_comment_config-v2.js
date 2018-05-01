@@ -47,4 +47,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.disableNativeSpellChecker = false;
 
 	config.removePlugins = 'liststyle,tabletools,scayt,menubutton,contextmenu';
+
+	config.entities = false;
+
 };

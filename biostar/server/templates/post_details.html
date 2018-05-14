@@ -75,18 +75,24 @@
 
                         <h3>Add your answer</h3>
 
-                        <div class="alert alert-success">
+                        <div class="alert alert-warning">
 
-                          <p>Respond to the original question.  Use
-                            'Add comment' to discuss an answer, ask
-                            for clarifications, request more details,
-                            etc.
-                          </p>
+                         <span>
+
+			   If you want to provide a solution to the original
+			   question, click <a class="btn btn-primary btn-xs"
+			   href="javascript:$('#answer-form').removeClass('hidden')"
+			   role="button">Add Answer</a> .<br />
+			   Use the ADD COMMENT or ADD REPLY buttons to ask for
+			   clarifications, request more details, or respond to a
+			   previous answer or comment.
+
+                         </span>
 
                         </div>
 
                         <form role="form" id="answer-form" method="post"
-                              action="{% url 'new-answer' post.id %}">
+                              action="{% url 'new-answer' post.id %}" class="hidden">
                             {% csrf_token %}
                             <div class="form-group">
                                 <textarea class="textarea form-control" cols="40" id="answerbox" name="content"

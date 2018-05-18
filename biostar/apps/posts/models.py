@@ -94,6 +94,8 @@ class PostManager(models.Manager):
         else:
             query = self.filter(type__in=Post.TOP_LEVEL).exclude(tag_set__name__in=exclude)
 
+        query = query.filter(status=Post.OPEN)
+
         # Remove fields that are not used.
         query = query.defer('content', 'html')
 
@@ -412,7 +414,7 @@ admin.site.register(ReplyToken, ReplyTokenAdmin)
 
 class EmailSub(models.Model):
     """
-    Represents an email subscription to the explorer explorer.
+    Represents an email subscription to the digest digest.
     """
     SUBSCRIBED, UNSUBSCRIBED = 0, 1
     TYPE_CHOICES = [
@@ -425,7 +427,7 @@ class EmailSub(models.Model):
 
 class EmailEntry(models.Model):
     """
-    Represents an explorer explorer email entry.
+    Represents an digest digest email entry.
     """
     DRAFT, PENDING, PUBLISHED = 0, 1, 2
 
@@ -551,6 +553,7 @@ class Subscription(models.Model):
     def finalize_delete(sender, instance, *args, **kwargs):
         # Decrease the subscription count of the post.
         Post.objects.filter(pk=instance.post.root_id).update(subs_count=F('subs_count') - 1)
+
 
 
 # Admin interface for subscriptions

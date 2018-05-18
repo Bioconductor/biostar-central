@@ -2,12 +2,17 @@
 
 <div class="post-body {{ post.get_status_display }} clearfix">
 
+
     {% if post.is_toplevel %}
+        {% include "banners/leaderboard.html" %}
+
         <div class="title" >{{ post.get_type_display }}: <span itemprop="name">{{ post.get_title }}</span></div>
+
     {% endif %}
 
-
     <div class="post vote-box visible-lg visible-md" data-post_id="{{ post.id }}">
+
+
 
         <div class="vote mark {{ post.has_upvote|on }} tip" data-toggle="tooltip" data-placement="top"
              data-type="vote" title="Upvote!">
@@ -26,6 +31,9 @@
                 <i class="fa fa-check-circle-o fa-2x"></i>
             </div>
         {% endif %}
+
+
+
     </div>
 
     <div>
@@ -45,6 +53,9 @@
                         {% for tag in post.tag_set.all %}
                             <a class="tag" href="/t/{{ tag.name }}/">{{ tag.name }}</a>
                         {% endfor %}
+
+                    &bull; {{ post.root.view_count|bignum }} views
+
                     </div>
                 {% endif %}
 

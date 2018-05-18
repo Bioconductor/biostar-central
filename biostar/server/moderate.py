@@ -1,7 +1,7 @@
 """
 Moderator views
 """
-from biostar.apps.posts.models import Post
+from biostar.apps.posts.models import Post, Vote
 from biostar.apps.badges.models import Award
 from biostar.apps.posts.auth import post_permissions
 from biostar.apps.users.models import User
@@ -21,10 +21,13 @@ from django.http import HttpResponseRedirect
 from django.db.models import Q, F
 from datetime import timedelta
 import logging
+from datetime import datetime
+from django.utils.timezone import utc
 
 logger = logging.getLogger(__name__)
 
-OPEN, CLOSE_OFFTOPIC, CLOSE_SPAM, DELETE, DUPLICATE, MOVE_TO_COMMENT, MOVE_TO_ANSWER, CROSSPOST = map(str, range(8))
+OPEN, CLOSE_OFFTOPIC, CLOSE_SPAM, DELETE, \
+    DUPLICATE, MOVE_TO_COMMENT, MOVE_TO_ANSWER, CROSSPOST, TOGGLE_ACCEPT, BUMP_POST = map(str, range(10))
 
 from biostar.apps.util import now
 
@@ -86,7 +89,9 @@ def user_exceeds_limits(request, top_level=False):
 
 class PostModForm(forms.Form):
     CHOICES = [
+        (BUMP_POST, "Bump a post"),
         (OPEN, "Open a closed or deleted post"),
+        (TOGGLE_ACCEPT, "Toggle accepted status"),
         (MOVE_TO_ANSWER, "Move post to an answer"),
         (MOVE_TO_COMMENT, "Move post to a comment on the top level post"),
         (DUPLICATE, "Duplicated post (top level)"),
@@ -198,8 +203,27 @@ class PostModeration(LoginRequiredMixin, FormView):
         root  = Post.objects.filter(pk=post.root_id)
 
         action = get('action')
-        if action == OPEN and not user.is_moderator:
-            messages.error(request, "Only a moderator may open a post")
+
+        if action == (BUMP_POST) and post != post.root:
+            messages.error(request, "Only top-level posts may be bumped!")
+            return response
+
+        if action == (BUMP_POST) and user.is_moderator:
+            now = datetime.utcnow().replace(tzinfo=utc)
+            Post.objects.filter(id=post.id).update(lastedit_date=now, lastedit_user=request.user)
+            messages.success(request, "Post bumped")
+            return response
+
+        if action == (OPEN, TOGGLE_ACCEPT) and not user.is_moderator:
+            messages.error(request, "Only a moderator may open or toggle a post")
+            return response
+
+        if action == TOGGLE_ACCEPT and post.type == Post.ANSWER:
+            # Toggle post acceptance.
+            post.has_accepted=not post.has_accepted
+            post.save()
+            has_accepted = Post.objects.filter(root=post.root, type=Post.ANSWER, has_accepted=True).count()
+            root.update(has_accepted=has_accepted)
             return response
 
         if action == MOVE_TO_ANSWER and post.type == Post.COMMENT:
@@ -375,14 +399,24 @@ class UserModeration(LoginRequiredMixin, FormView):
             # Remove data by user
             profile.clear_data()
 
-            # Remove badges that may have been earned by this user
+            # Lets make sure we don't ban people that have been around a while
+            # These can still be removed but via the admin interface
+            # We do this to limit damage that a hacked admin account could do.
+            if target.score > 3:
+                messages.error(request, "Target user has a high score and can only be banned via the admin interface")
+                return response
+
+            # Remove badges that may have been earned by this user.
             Award.objects.filter(user=target).delete()
 
-            # Mass delete posts by this user
-            query = Post.objects.filter(author=target, type__in=Post.TOP_LEVEL).update(status=Post.DELETED)
+            # Delete all votes by this user.
+            Vote.objects.filter(author=target).delete()
 
-            # Delete posts with no votes.
-            query = Post.objects.filter(author=target, type__in=Post.TOP_LEVEL, vote_count=0, reply_count=0)
+            # Mark all posts as deleted.
+            Post.objects.filter(author=target).update(status=Post.DELETED)
+
+            # Destroy posts with no votes.
+            query = Post.objects.filter(author=target, vote_count__lt=2)
             count = query.count()
             query.delete()
 

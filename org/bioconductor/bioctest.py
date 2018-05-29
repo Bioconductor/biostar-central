@@ -6,4 +6,4 @@ import os
 # This should be a fully qualified absolute path
 THEME_PATH = os.path.join(HOME_DIR, "org", "bioconductor", "templates")
 
-TEMPLATE_DIRS = [THEME_PATH] + TEMPLATE_DIRS
+TEMPLATE_DIRS = [THEME_PATH] + list(TEMPLATE_DIRS)

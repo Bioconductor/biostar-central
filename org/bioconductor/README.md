@@ -3,14 +3,15 @@
 # How to customize the site
 
 To load up different templates Biostar needs to be told which paths to look for when looking for template files.
-Files are loaded by name up in the order that they have been found in the path. 
+Files are loaded by name up in the order that they have been found in the path.
 
-Investigate the file:
+First investigate the settings file:
 
-    support.bioconductor.org/biostar/server/bioc_settings.py
+https://github.com/biostars/support.bioconductor.org/blob/rollBack/org/bioconductor/bioc_settings.py
+
+Note how all settings are loaded from the main settings first, then some settings are customized.
 
 The directory that the settings file is located must be importable via Python.
-
 
 Edit and apply the `PYTHONPATH` to inform Python of where to look for modules.
 
@@ -22,27 +23,26 @@ Test that the settings is file is importable via
 
     python -m bioc_settings
 
-This must work from any location not just the folder that contains `bioc_settings.py`
+This **must work** from any location not just the folder that contains `bioc_settings.py`
 
-Now enable the new module
+Now enable the new module by telling biostar which settings module to use:
 
     export DJANGO_SETTINGS_MODULE=bioc_settings
 
-and run
+then run
 
     biostar.sh run
 
 You should see a message that indicates that the base template is now loading from
 the `starbase.html` file located in
 
-    support.bioconductor.org/org/bioconductor/templates
+* https://github.com/biostars/support.bioconductor.org/tree/rollBack/org/bioconductor/templates
 
 rather than the original location
 
-    support.bioconductor.org/biostar/server/templates
+* https://github.com/biostars/support.bioconductor.org/tree/rollBack/biostar/server/templates
 
-The template in the `org` directory may be modified in any way that is needed.
-
+The templates in the `org` directory may be modified in any way that is needed.
 
 ## Custom settings
 
@@ -75,7 +75,7 @@ To activate the Bioconductor templates users need to ensure that
 directory is listed ahead of the other directories in `TEMPLATE_DIRS` variable.
 For example in the custom settings module:
     
-    TEMPLATE_DIRS = [THEME_PATH] + TEMPLATE_DIRS
+    TEMPLATE_DIRS = [THEME_PATH] + list(TEMPLATE_DIRS)
 
 ## Enabling the new settings
 

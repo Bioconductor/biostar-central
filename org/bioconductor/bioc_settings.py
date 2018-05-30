@@ -11,4 +11,8 @@ EXTRA_PATHS = [
 # Activate the new PATHS
 TEMPLATE_DIRS = EXTRA_PATHS + list(TEMPLATE_DIRS)
 
-print(TEMPLATE_DIRS)
+# This is to show you what the template loading order is:
+
+print("*** Template loading order")
+for path in TEMPLATE_DIRS:
+    print(path)

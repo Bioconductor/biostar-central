@@ -1,6 +1,48 @@
 # Bioconductor Support Site
 
-How to customize Biostar
+# How to customize the site
+
+To load up different templates Biostar needs to be told which paths to look for when looking for template files.
+Files are loaded by name up in the order that they have been found in the path. 
+
+Investigate the file:
+
+    support.bioconductor.org/biostar/server/bioc_settings.py
+
+The directory that the settings file is located must be importable via Python.
+
+
+Edit and apply the `PYTHONPATH` to inform Python of where to look for modules.
+
+Example:
+
+    export PYTHONPATH=/Users/ialbert/app/support.bioconductor.org/org/bioconductor:$PYTHONPATH
+
+Test that the settings is file is importable via
+
+    python -m bioc_settings
+
+This must work from any location not just the folder that contains `bioc_settings.py`
+
+Now enable the new module
+
+    export DJANGO_SETTINGS_MODULE=bioc_settings
+
+and run
+
+    biostar.sh run
+
+You should see a message that indicates that the base template is now loading from
+the `starbase.html` file located in
+
+    support.bioconductor.org/org/bioconductor/templates
+
+rather than the original location
+
+    support.bioconductor.org/biostar/server/templates
+
+The template in the `org` directory may be modified in any way that is needed.
+
 
 ## Custom settings
 

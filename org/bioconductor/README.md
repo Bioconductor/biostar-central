@@ -17,34 +17,34 @@ The directory that the settings file is located must be importable via Python.
 
 1. Edit and apply the `PYTHONPATH` to inform Python of where to look for modules.
 
-Example:
+     Example:
 
-    export PYTHONPATH=/Users/ialbert/app/support.bioconductor.org/org/bioconductor:$PYTHONPATH
+        export PYTHONPATH=/Users/ialbert/app/support.bioconductor.org/org/bioconductor:$PYTHONPATH
 
-Test that the settings is file is importable via
+     Test that the settings is file is importable via
 
-    python -m bioc_settings
+        python -m bioc_settings
 
-This **must work** from any location not just the folder that contains `bioc_settings.py`
+     This **must work** from any location not just the folder that contains `bioc_settings.py`
 
 2. Now enable the new module by telling biostar which settings module to use:
 
-    export DJANGO_SETTINGS_MODULE=bioc_settings
+        export DJANGO_SETTINGS_MODULE=bioc_settings
 
-3. Run
+3. Run `biostar.sh` with:
 
-    biostar.sh run
+        biostar.sh run
 
-You should see a message that indicates that the base template is now loading from
+    You should see a message that indicates that the base template is now loading from
 the `starbase.html` file located in
 
-* https://github.com/biostars/support.bioconductor.org/tree/rollBack/org/bioconductor/templates
+    * https://github.com/biostars/support.bioconductor.org/tree/rollBack/org/bioconductor/templates
 
-rather than the original location
+    rather than the original location
 
-* https://github.com/biostars/support.bioconductor.org/tree/rollBack/biostar/server/templates
+    * https://github.com/biostars/support.bioconductor.org/tree/rollBack/biostar/server/templates
 
-The templates in the `org` directory may be modified in any way that is needed.
+    The templates in the `org` directory may be modified in any way that is needed.
 
 ### Custom settings
 

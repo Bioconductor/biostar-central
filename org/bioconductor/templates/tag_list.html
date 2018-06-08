@@ -1,0 +1,47 @@
+{% extends "starbase.html" %}
+{% load server_tags %}
+{% load humanize %}
+
+{% block content %}
+
+    <script language="javascript">
+        $( document ).ready(function() {
+            $("#search-tags").click(function(){
+                window.location.href = window.location.href + $("#id_tag_val").val() + "/";
+            });
+        });
+    </script>
+
+    <div class="row">
+
+      <div class="col-md-9">
+
+        <div class="input-group col-xs-8 col-xs-offset-4">
+          <span class="input-group-addon">Search</span>
+          <input type="text" name="tag_val" class="form-control" id="id_tag_val" placeholder="Enter tags...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" id="search-tags" type="button">Go!</button>
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">&nbsp;</div>
+
+    <div class="row">
+
+      <div id="tag-list">
+        {% for tag in tags %}
+        <div class="col-xs-4 col-sm-3 col-md-2">
+          <a class="tag" href="/t/{{ tag.name }}">{{ tag.name }}</a>&nbsp;&times;&nbsp;{{ tag.count }}
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+
+    {% page_bar %}
+
+{% endblock %}

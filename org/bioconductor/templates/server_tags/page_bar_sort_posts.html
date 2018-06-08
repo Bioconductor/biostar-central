@@ -1,0 +1,71 @@
+{% load humanize %}
+
+<div class="row pagebar">
+
+    <div class="col-xs-2">
+
+        <div class="btn-group">
+
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+              Limit <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              {% for field in date_fields %}
+              <li>
+                <a href="?sort={{ sort }}&limit={{ field }}&answered={{ answered }}&q={{ q }}">
+                  {% if field == limit %}
+                  <span class="glyphicon glyphicon-ok"></span>
+                  {% endif %}
+                  {{ field }}</a>
+              </li>
+              {% endfor %}
+              <li class="divider"></li>
+              <li>
+                {% if answered == 'unanswered' %}
+                <a href="?sort={{ sort }}&limit={{ limit }}&answered=all&q={{ q }}">
+                <span class="glyphicon glyphicon-ok"></span>
+                {% else %}
+                <a href="?sort={{ sort }}&limit={{ limit }}&answered=unanswered&q={{ q }}">
+                {% endif %}
+                Unanswered</a>
+              </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="col-xs-2">
+
+        <div class="btn-group">
+
+            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+              Sort <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              {% for field in sort_fields %}
+              <li>
+                <a href="?sort={{ field }}&limit={{ limit }}&answered={{ answered }}&q={{ q }}">
+                  {% if field == sort %}
+                  <span class="glyphicon glyphicon-ok"></span>
+                  {% endif %}
+                  {{ field }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="col-xs-8">
+
+      <form role="form" action="{% url 'search-page' %}">
+        <div class="input-group">
+          <span class="input-group-addon">Search</span>
+          <input type="text" class="form-control" name="q" value="{{ q }}">
+        </div>
+      </form>
+
+    </div>
+
+</div>

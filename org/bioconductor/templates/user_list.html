@@ -1,0 +1,33 @@
+{% extends "starbase.html" %}
+{% load server_tags %}
+{% load humanize %}
+
+{% block page_title %}
+    User List
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-9">
+
+            {% page_bar_sort_users %}
+
+        </div>
+    </div>
+
+    <div class="row">
+
+      <div id="userlist">
+        {% for user in users %}
+        {%  user_box user show_lastlogin%}
+        {% endfor %}
+
+      </div>
+    </div>
+
+    <div class="row">
+      {% page_bar %}
+    </div>
+
+{% endblock %}

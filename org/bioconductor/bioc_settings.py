@@ -16,3 +16,15 @@ TEMPLATE_DIRS = EXTRA_PATHS + list(TEMPLATE_DIRS)
 print("*** Template loading order")
 for path in TEMPLATE_DIRS:
     print(path)
+
+START_CATEGORIES = [
+    "Latest"
+]
+
+NAVBAR_TAGS = []
+
+END_CATEGORIES = [
+    "News", "Jobs", "Tutorials"
+]
+
+CATEGORIES = START_CATEGORIES + NAVBAR_TAGS + END_CATEGORIES

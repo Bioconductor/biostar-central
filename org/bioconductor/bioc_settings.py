@@ -18,14 +18,12 @@ for path in TEMPLATE_DIRS:
     print(path)
 
 START_CATEGORIES = [
-    "Latest"
+    "Latest", "News", "Jobs", "Tutorials"
 ]
 
 NAVBAR_TAGS = []
 
-END_CATEGORIES = [
-    "News", "Jobs", "Tutorials"
-]
+END_CATEGORIES = []
 
 CATEGORIES = START_CATEGORIES + NAVBAR_TAGS + END_CATEGORIES
 
@@ -36,3 +34,9 @@ EXTRA_STATIC = [
 ]
 
 STATICFILES_DIRS = EXTRA_STATIC + list(STATICFILES_DIRS)
+
+EXTRA_FLATPAGE =  [
+    abspath(HOME_DIR, 'org', 'bioconductor', 'import', 'pages')
+]
+
+FLATPAGE_IMPORT_DIR = EXTRA_FLATPAGE + list(FLATPAGE_IMPORT_DIR)

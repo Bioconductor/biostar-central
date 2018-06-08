@@ -1,8 +1,52 @@
 # Bioconductor Support Site
 
-How to customize Biostar
+## How to customize the site
 
-## Custom settings
+To load up different templates Biostar needs to be told which paths to look for when looking for template files.
+Files are loaded by name up in the order that they have been found in the path.
+
+First investigate the settings file:
+
+https://github.com/biostars/support.bioconductor.org/blob/rollBack/org/bioconductor/bioc_settings.py
+
+Note how all settings are loaded from the main settings first, then some settings are customized.
+
+### Steps
+
+The directory that the settings file is located must be importable via Python.
+
+1. Edit and apply the `PYTHONPATH` to inform Python of where to look for modules.
+
+     Example:
+
+        export PYTHONPATH=/Users/ialbert/app/support.bioconductor.org/org/bioconductor:$PYTHONPATH
+
+     Test that the settings is file is importable via
+
+        python -m bioc_settings
+
+     This **must work** from any location not just the folder that contains `bioc_settings.py`
+
+2. Now enable the new module by telling biostar which settings module to use:
+
+        export DJANGO_SETTINGS_MODULE=bioc_settings
+
+3. Run `biostar.sh` with:
+
+        biostar.sh run
+
+    You should see a message that indicates that the base template is now loading from
+the `starbase.html` file located in
+
+    * https://github.com/biostars/support.bioconductor.org/tree/rollBack/org/bioconductor/templates
+
+    rather than the original location
+
+    * https://github.com/biostars/support.bioconductor.org/tree/rollBack/biostar/server/templates
+
+    The templates in the `org` directory may be modified in any way that is needed.
+
+### Custom settings
 
 All custom settings should import from the main settings:
 
@@ -10,7 +54,7 @@ All custom settings should import from the main settings:
     
 Within this new file users need to only override only the settings that are to be changed.
 
-## Customizing templates
+### Customizing templates
 
 Templates that are to be modified need to be copied to a new directory. Example from:
 
@@ -24,7 +68,7 @@ so that it retains the same relative path.  If the template was located
 in a subdirectory of the `templates` directory this same
 subdirectory would need to be created in the new location as well.
 
-## Template paths
+### Template paths
 
 To activate the Bioconductor templates users need to ensure that
 
@@ -33,9 +77,9 @@ To activate the Bioconductor templates users need to ensure that
 directory is listed ahead of the other directories in `TEMPLATE_DIRS` variable.
 For example in the custom settings module:
     
-    TEMPLATE_DIRS = [THEME_PATH] + TEMPLATE_DIRS
+    TEMPLATE_DIRS = [THEME_PATH] + list(TEMPLATE_DIRS)
 
-## Enabling the new settings
+### Enabling the new settings
 
 Run biostar in an environment where the new file is listed as a python module name 
 (not file name) or the `DJANGO_SETTINGS_MODULE` environment variable
@@ -50,7 +94,7 @@ be achieved by adding the directory that stores the new settings file to the Pyt
     export PYTHONPATH=/home/biostar/bar:$PYTHONPATH
     export DJANGO_SETTINGS_MODULE=foo
 
-## Environment variables
+### Environment variables
 
 Biostar may be customized via a number of environment variables that otherwise 
 have default values. Export an environment variable with the given name to

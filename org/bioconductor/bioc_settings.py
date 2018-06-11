@@ -67,3 +67,7 @@ SITE_LOGO = "bioconductor_logo_rgb_small.jpg"
 RECENT_VOTE_COUNT = 5
 RECENT_USER_COUNT = 5
 RECENT_POST_COUNT = 5
+
+# The google id will injected as a template variable.
+GOOGLE_TRACKER = "UA-55275703-1"
+GOOGLE_DOMAIN = "support.bioconductor.org"

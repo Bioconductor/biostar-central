@@ -35,8 +35,3 @@ EXTRA_STATIC = [
 
 STATICFILES_DIRS = EXTRA_STATIC + list(STATICFILES_DIRS)
 
-EXTRA_FLATPAGE =  [
-    abspath(HOME_DIR, 'org', 'bioconductor', 'import', 'pages')
-]
-
-FLATPAGE_IMPORT_DIR = EXTRA_FLATPAGE + list(FLATPAGE_IMPORT_DIR)

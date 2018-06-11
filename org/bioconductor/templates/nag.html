@@ -1,3 +1,7 @@
+{# Controls message bar that appears on login if profile information incomplete #}
+{# Must be activated in starbase.html #}
+
+
 {% if user.is_authenticated and not user.profile.filled %}
     <div class="alert alert-info text-center">
         The community would like to know

@@ -33,7 +33,7 @@ The directory that the settings file is located must be importable via Python.
 
 3. Run `biostar.sh` with:
 
-        biostar.sh run
+        ./biostar.sh run
 
     You should see a message that indicates that the base template is now loading from
 the `starbase.html` file located in

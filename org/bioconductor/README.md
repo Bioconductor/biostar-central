@@ -19,7 +19,7 @@ The directory that the settings file is located must be importable via Python.
 
      Example:
 
-        export PYTHONPATH=/Users/ialbert/app/support.bioconductor.org/org/bioconductor:$PYTHONPATH
+        export PYTHONPATH=/home/lori/a/support.bioconductor.org/org/bioconductor:$PYTHONPATH
 
      Test that the settings is file is importable via
 

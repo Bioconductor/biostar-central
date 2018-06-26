@@ -1,0 +1,15 @@
+{% load humanize %}
+{% load crispy_forms_tags %}
+<div class="alert alert-warning">
+
+    <h4>Moderating {{ post.get_type_display }}: {{ post.title }}</h4>
+
+    {% crispy form %}
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $("label.radio").wrap("<div class='radio'></div>");
+    });
+    </script>
+
+</div>

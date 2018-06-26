@@ -28,6 +28,25 @@
 
 {% block content %}
 
+<script>
+    $(function() {
+        // make sure answers are only posted once
+        $('#answer-form').one('submit', function() {
+            $(this).find('button[type="submit"]').attr('disabled','disabled');
+        });
+
+        var first = true;
+
+        checkBeforeSubmit = function() {
+            if (first) {
+                document.forms["comment-form"].submit();
+                first = false;
+            }
+        }
+
+    });
+</script>
+
     {#  {% search_bar %} #}
 
     <div class="row" itemscope itemtype="http://schema.org/QAPage">
@@ -97,7 +116,7 @@
                               action="{% url 'new-answer' post.id %}" class="hidden">
                             {% csrf_token %}
                             {{  form.content }}
-                            <input type="submit" name="submit" value="Submit Answer" class="btn btn-primary" id="submit-id-submit">
+                            <input type="submit" name="submit" value="Add Answer" class="btn btn-primary" id="submit-id-submit">
 
                         </form>
                         </div>

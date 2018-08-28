@@ -309,3 +309,10 @@ def traverse_comments(request, post, tree):
     for node in tree[post.id]:
         coll.append(traverse(node))
     return '\n'.join(coll)
+
+@register.filter
+@stringfilter
+def replace(value, args):
+    "Replace all instances of old with new."
+    old, new = args.split(",")
+    return value.replace(old, new)

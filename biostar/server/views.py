@@ -80,6 +80,11 @@ def apply_sort(request, query):
     if days:
         delta = const.now() - timedelta(days=days)
         query = query.filter(lastedit_date__gt=delta)
+
+    answered = request.GET.get('answered', const.POST_ANSWERED_DEFAULT)
+    if (answered == 'unanswered'):
+        query = query.filter(reply_count=0)
+
     return query
 
 

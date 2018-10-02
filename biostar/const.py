@@ -71,6 +71,9 @@ POST_LIMIT_DEFAULT = POST_LIMIT_FIELDS[0]
 
 POST_LIMIT_INVALID_MSG = "Invalid limit parameter received"
 
+POST_ANSWERED_MAP = ["all", "unanswered"]
+POST_ANSWERED_DEFAULT = POST_ANSWERED_MAP[0]
+POST_ANSWERED_INVALID_MSG = "'answered' must be 'all' or 'unanswered'"
 
 def now():
     return datetime.utcnow().replace(tzinfo=utc)

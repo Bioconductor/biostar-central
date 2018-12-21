@@ -320,6 +320,7 @@ class BaseDetailMixin(DetailView):
         context = super(BaseDetailMixin, self).get_context_data(**kwargs)
         sort = self.request.GET.get('sort', const.POST_SORT_DEFAULT)
         limit = self.request.GET.get('limit', const.POST_LIMIT_DEFAULT)
+        answered = self.request.GET.get('answered', const.POST_ANSWERED_DEFAULT)
 
         context['sort'] = sort
         context['limit'] = limit

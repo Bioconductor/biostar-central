@@ -127,10 +127,10 @@ def parse_html(text):
 
     # Apply a markdown transformation last.
     try:
-        html_classes = dict(code="language-bash", pre="pre")
+        html_classes = dict(pre="prettyprint")
         html = markdown2.markdown(text,
                                   extras={"fenced-code-blocks":{},
-                                          "code-friendly":{}, "nofollow":{}, "spoiler":{}, "html-classes":html_classes})
+                                          "tables":{}, "nofollow":{}, "spoiler":{}, "html-classes":html_classes})
     except Exception as exc:
         logger.error('crash during markdown conversion: %s' % exc)
 

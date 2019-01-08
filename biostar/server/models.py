@@ -58,10 +58,11 @@ def post_create_messages(sender, instance, created, *args, **kwargs):
 
         # Generate the email message body.
         site = Site.objects.get_current()
-        email_text = html.render(name=POST_CREATED_TEXT, post=post, user=author, site=site)
+        tags = ", ".join(post.root.tag_val.split(","))
+        email_text = html.render(name=POST_CREATED_TEXT, post=post, user=author, site=site, tags=tags)
 
         # Generate the html message
-        email_html = html.render(name=POST_CREATED_HTML, post=post, user=author, site=site)
+        email_html = html.render(name=POST_CREATED_HTML, post=post, user=author, site=site, tags=tags)
 
         # Create the message body.
         body = MessageBody.objects.create(author=author, subject=post.root.title,

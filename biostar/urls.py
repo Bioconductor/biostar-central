@@ -116,6 +116,8 @@ urlpatterns = patterns('',
     url(r'^api/stats/date/(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})/$',
         api.daily_stats_on_date, name='api-stats-on-date'),
 
+    url(r'^api/email/(?P<email>\S+)/$', api.user_email, name='api-email'),
+
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
 

@@ -59,6 +59,15 @@ def traffic(request):
 
 
 @json_response
+def user_email(request, email):
+    try:
+        user = User.objects.get(email__iexact=email.lower())
+        return True
+    except User.DoesNotExist:
+        return False
+
+
+@json_response
 def user_details(request, id):
     """
     Details for a user.

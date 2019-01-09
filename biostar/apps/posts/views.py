@@ -62,8 +62,8 @@ def valid_tag(text):
     text = text.strip()
     if not text:
         raise ValidationError('Please enter at least one tag')
-    if len(text) > 50:
-        raise ValidationError('Tag line is too long (50 characters max)')
+    if len(text) > 100:
+        raise ValidationError('Tag line is too long (100 characters max)')
     words = text.split(",")
     if len(words) > 5:
         raise ValidationError('You have too many tags (5 allowed)')
@@ -100,12 +100,13 @@ class LongForm(forms.Form):
     tag_val = forms.CharField(
         label="Post Tags",
         required=True, validators=[valid_tag],
-        help_text="Choose one or more tags to match the topic. To create a new tag just type it in and press ENTER.",
+        help_text="Choose one or more tags to match the topic. Include the name of any Bioconductor package referenced.<br>To create a new tag just type it in and press ENTER.",
     )
 
     content = forms.CharField(widget=PagedownWidget, validators=[valid_language],
                               min_length=80, max_length=15000,
-                              label="Enter your post below")
+                              label="Enter your post below.<br>See <a href='http://bioconductor.org/help/support/posting-guide/#composing'>Posting Guide</a> for guidance on creating a post.", 
+                              help_text="If you're having a problem with a Bioconductor package, please paste all the commands that produce the error and the full error text, along with the output of the <i>sessionInfo()</i> command.")
 
     def __init__(self, *args, **kwargs):
         super(LongForm, self).__init__(*args, **kwargs)

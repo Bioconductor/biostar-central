@@ -84,9 +84,8 @@ class LongForm(forms.Form):
 
     POST_CHOICES = [(Post.QUESTION, "Question"),
                     (Post.JOB, "Job Ad"),
-                    (Post.TUTORIAL, "Tutorial"), (Post.TOOL, "Tool"),
-                    (Post.FORUM, "Forum"), (Post.NEWS, "News"),
-                    (Post.BLOG, "Blog"), (Post.PAGE, "Page")]
+                    (Post.TUTORIAL, "Tutorial"),
+                    (Post.NEWS, "News Event")]
 
     title = forms.CharField(
         label="Post Title",
@@ -95,7 +94,7 @@ class LongForm(forms.Form):
 
     post_type = forms.ChoiceField(
         label="Post Type",
-        choices=POST_CHOICES, help_text="Select a post type: Question, Forum, Job, Blog")
+        choices=POST_CHOICES, help_text="Select a post type.")
 
     tag_val = forms.CharField(
         label="Post Tags",

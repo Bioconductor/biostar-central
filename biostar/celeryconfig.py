@@ -65,12 +65,12 @@ CELERYBEAT_SCHEDULE = {
         'kwargs': {"download": True}
     },
 
-    'bump': {
-        'task': 'biostar.celery.call_command',
-        'schedule': timedelta(hours=6),
-        'args': ["patch"],
-        'kwargs': {"bump": True}
-    },
+#    'bump': {
+#        'task': 'biostar.celery.call_command',
+#        'schedule': timedelta(hours=6),
+#        'args': ["patch"],
+#        'kwargs': {"bump": True}
+#    },
 
 }
 

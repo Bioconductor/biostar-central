@@ -65,7 +65,7 @@ def post_create_messages(sender, instance, created, *args, **kwargs):
         email_html = html.render(name=POST_CREATED_HTML, post=post, user=author, site=site, tags=tags)
 
         # Create the message body.
-        body = MessageBody.objects.create(author=author, subject=post.root.title,
+        body = MessageBody.objects.create(author=author, subject=post.title,
                                           text=content, sent_at=post.creation_date)
 
         # Collects the emails for bulk sending.

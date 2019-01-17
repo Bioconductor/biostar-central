@@ -5,7 +5,7 @@ from django.template.defaultfilters import stringfilter
 from django.core.context_processors import csrf
 from biostar.apps.posts.models import Post, Tag
 from biostar.apps.messages.models import Message
-import random, hashlib, urllib
+import random, hashlib, urllib, re
 from datetime import datetime, timedelta
 from django.utils.timezone import utc
 from django import template
@@ -46,6 +46,16 @@ def show_nonzero(value):
     "The purpose of this is to return value or empty"
     return value if value else ''
 
+
+@register.filter
+@stringfilter
+def titletrunc(value):
+    if (value.startswith("A: ")):
+       return value[3:]
+    elif (value.startswith("(")):
+       return re.sub('\(* A: *', ' ', value)
+    else:
+       return value
 
 @register.filter
 def bignum(number):

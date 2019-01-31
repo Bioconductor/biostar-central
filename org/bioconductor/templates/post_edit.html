@@ -10,12 +10,19 @@
 
 {% block extras %}
 
-    <script type="text/javascript"
-            src="{% static "lib/pagedown/Markdown.Converter.js" %}"></script>
-    <script type="text/javascript"
-            src="{% static "lib/pagedown/Markdown.Sanitizer.js" %}"></script>
-    <script type="text/javascript"
-            src="{% static "lib/pagedown/Markdown.Editor.js" %}"></script>
+
+    {# Random numbers added to bypass potential browser caching. #}
+    <link rel="stylesheet/less" type="text/less" href="{{ STATIC_URL }}{{ SITE_STYLE_CSS }}?x={% rand_num %}">
+    <script>
+      less = {
+        async: true,
+      }
+    </script>
+
+
+    <script type="text/javascript" src="{% static "lib/pagedown/Markdown.Converter.js" %}"></script>
+    <script type="text/javascript" src="{% static "lib/pagedown/Markdown.Sanitizer.js" %}"></script>
+    <script type="text/javascript" src="{% static "lib/pagedown/Markdown.Editor.js?" rand_num %}"></script>
     <script type="text/javascript" src="{% static "lib/pagedown-extra/Markdown.Extra.js" %}"></script>
     <script type="text/javascript" src="{% static "lib/pagedown-extra/prettify.js" %}"></script>
 

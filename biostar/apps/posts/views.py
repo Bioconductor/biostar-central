@@ -104,7 +104,7 @@ class LongForm(forms.Form):
 
     content = forms.CharField(widget=PagedownWidget, validators=[valid_language],
                               min_length=80, max_length=15000,
-                              label="Enter your post below.<br>See <a href='http://bioconductor.org/help/support/posting-guide/#composing'>Posting Guide</a> for guidance on creating a post.", 
+                              label="Enter your post below.<br>See <a href='http://bioconductor.org/help/support/posting-guide/#composing'>Posting Guide</a> for guidance on creating a post.<br>This site uses markdown. See <a href='https://support.bioconductor.org/p/117436/'>tutorial post</a> for advise on post formatting.", 
                               help_text="If you're having a problem with a Bioconductor package, please paste all the commands that produce the error and the full error text, along with the output of the <i>sessionInfo()</i> command.")
 
     def __init__(self, *args, **kwargs):

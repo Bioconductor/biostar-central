@@ -102,6 +102,19 @@ DATABASES = {
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["localhost", get_env("BIOSTAR_HOSTNAME")]
 
+
+# Allowed html content.
+ALLOWED_TAGS = "p div br code pre h1 h2 h3 h4 h5 h6 hr span s sub sup b i img strong strike em underline super table thead tr th td tbody".split()
+ALLOWED_STYLES = 'color font-weight background-color width height'.split()
+ALLOWED_ATTRIBUTES = {
+    '*': ['class', 'style'],
+    'a': ['href', 'rel'],
+    'img': ['src', 'alt', 'width', 'height'],
+    'table': ['border', 'cellpadding', 'cellspacing'],
+
+}
+
+
 if 'BIOSTAR_IP' in os.environ:
     ALLOWED_HOSTS.append(os.environ['BIOSTAR_IP'])
 

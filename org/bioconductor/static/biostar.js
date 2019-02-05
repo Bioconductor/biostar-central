@@ -165,7 +165,8 @@ $(document).ready(function () {
         var converter = new Markdown.Converter();
 	Markdown.Extra.init(converter, {highlighter: "prettify"});
         var editor = new Markdown.Editor(converter);
-	editor.hooks.chain("onPreviewRefresh", prettyPrint);
+	editor.hooks.chain("onPreviewRefresh", function() {
+              PR.prettyPrint() });
         editor.run();
     }
 

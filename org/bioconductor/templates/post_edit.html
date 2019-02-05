@@ -24,7 +24,7 @@
     <script type="text/javascript" src="{% static "lib/pagedown/Markdown.Sanitizer.js" %}"></script>
     <script type="text/javascript" src="{% static "lib/pagedown/Markdown.Editor.js?x=" rand_num %}"></script>
     <script type="text/javascript" src="{% static "lib/pagedown-extra/Markdown.Extra.js?x=" rand_num %}"></script>
-    <script type="text/javascript" src="{% static "lib/pagedown-extra/prettify.js" %}"></script>
+    <script src="{%static "run_prettify.js" %}"></script>
 
     {#  Markdown editor style #}
     <link rel="stylesheet" href={% static "lib/pagedown/markdown.css" %}>

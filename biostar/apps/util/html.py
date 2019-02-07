@@ -127,7 +127,7 @@ def parse_html(text):
 
     # Apply a markdown transformation last.
     try:
-        html_classes = dict(code="prettyprint", pre="pre")
+        html_classes = dict(pre="prettyprint")
         html = markdown2.markdown(text,
                                   extras={"fenced-code-blocks":{},
                                           "tables":{}, "nofollow":{}, "spoiler":{}, "html-classes":html_classes})

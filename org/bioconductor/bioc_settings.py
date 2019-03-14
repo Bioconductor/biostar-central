@@ -47,8 +47,8 @@ CATEGORIES = START_CATEGORIES + NAVBAR_TAGS + END_CATEGORIES
 # This will appear as a top banner.
 # It should point to a template that will be included.
 
-#TOP_BANNER = ""
-TOP_BANNER = "bioc_banner.html"
+TOP_BANNER = ""
+#TOP_BANNER = "bioc_banner.html"
 
 # List all extra static paths here.
 EXTRA_STATIC = [
